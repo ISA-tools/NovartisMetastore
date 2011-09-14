@@ -1,0 +1,6 @@
+<resource>
+    <name>Novartis Metastore Information System</name>
+    <abbreviation>NVMDIS</abbreviation>
+    <!--Could turn this into a list of URLs for differing queries. -->
+    <queryURL>http://www.metastoreservices.novartis.intra:8021/msrest/api/preferredterms?type=$SEARCH_TERM&amp;format=xml</queryURL>
+</resource>
