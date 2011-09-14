@@ -1,7 +1,7 @@
 package org.isatools.novartismetastore.xml;
 
-import org.isatools.isacreator.io.xpath.XPathReader;
 import org.isatools.novartismetastore.resource.ResourceDescription;
+import uk.ac.ebi.utils.xml.XPathReader;
 
 import javax.xml.xpath.XPathConstants;
 

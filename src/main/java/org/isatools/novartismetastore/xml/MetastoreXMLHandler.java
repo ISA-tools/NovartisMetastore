@@ -1,11 +1,10 @@
 package org.isatools.novartismetastore.xml;
 
-import org.isatools.isacreator.io.xpath.XPathReader;
-import org.isatools.isacreator.ontologymanager.OntologySourceRefObject;
-import org.isatools.isacreator.ontologymanager.common.OntologyTerm;
 
 import org.isatools.novartismetastore.MetastoreClient;
+import org.isatools.novartismetastore.resource.MetastoreResult;
 import org.w3c.dom.NodeList;
+import uk.ac.ebi.utils.xml.XPathReader;
 
 import javax.xml.xpath.XPathConstants;
 import java.io.FileInputStream;
@@ -22,10 +21,10 @@ import java.util.*;
  */
 public class MetastoreXMLHandler {
 
-    public Map<OntologySourceRefObject, List<OntologyTerm>> parseXML(String xml) throws FileNotFoundException {
+    public List<MetastoreResult> parseXML(String xml) throws FileNotFoundException {
         XPathReader reader = new XPathReader(new FileInputStream(xml));
 
-        List<OntologyTerm> terms = new ArrayList<OntologyTerm>();
+        List<MetastoreResult> terms = new ArrayList<MetastoreResult>();
 
         NodeList platforms = (NodeList) reader.read("/synonyms/synonym", XPathConstants.NODESET);
 
@@ -35,10 +34,13 @@ public class MetastoreXMLHandler {
                 String id = (String) reader.read("/synonyms/synonym[" + sectionIndex + "]/@id", XPathConstants.STRING);
                 String token = (String) reader.read("/synonyms/synonym[" + sectionIndex + "]/token", XPathConstants.STRING);
                 if (!id.equalsIgnoreCase("")) {
-                    terms.add(new OntologyTerm(token, id, new OntologySourceRefObject()));
+                    terms.add(new MetastoreResult(id, token, MetastoreClient.resourceInformation));
                 }
             }
+
+            return terms;
         }
-        return Collections.singletonMap(MetastoreClient.resourceInformation, terms);
+        return new ArrayList<MetastoreResult>();
     }
+
 }
