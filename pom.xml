@@ -26,6 +26,27 @@
             <url>http://frog.oerc.ox.ac.uk:8080/artifactory/repo/</url>
         </repository>
 
+        <repository>
+            <id>m2repo</id>
+            <name>EBI repo</name>
+            <url>http://www.ebi.ac.uk/~maven/m2repo</url>
+        </repository>
+
+        <repository>
+            <id>mvnrepository</id>
+            <url>http://www.mvnrepository.com/</url>
+        </repository>
+
+        <repository>
+            <id>atlassian</id>
+            <url>https://m2proxy.atlassian.com/repository/public</url>
+        </repository>
+
+        <repository>
+            <id>java-dev</id>
+            <url>http://download.java.net/maven/2/</url>
+        </repository>
+
     </repositories>
 
     <build>
@@ -57,6 +78,7 @@
             <version>1.5.beta</version>
             <classifier>jar-with-dependencies</classifier>
         </dependency>
+
     </dependencies>
 
 
