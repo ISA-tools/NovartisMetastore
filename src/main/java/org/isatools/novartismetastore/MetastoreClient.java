@@ -1,7 +1,12 @@
 package org.isatools.novartismetastore;
 
+import org.isatools.isacreator.ontologymanager.OntologySourceRefObject;
+import org.isatools.isacreator.ontologymanager.common.OntologyTerm;
+import org.isatools.isacreator.plugins.host.service.PluginOntologyCVSearch;
+import org.isatools.isacreator.plugins.registries.OntologySearchPluginRegistry;
 import org.isatools.novartismetastore.resource.MetastoreResult;
 import org.isatools.novartismetastore.resource.ResourceDescription;
+import org.isatools.novartismetastore.utils.Convert;
 import org.isatools.novartismetastore.xml.MetastoreXMLHandler;
 import org.isatools.novartismetastore.xml.ResourceXMLHandler;
 import uk.ac.ebi.utils.io.DownloadUtils;
@@ -20,7 +25,7 @@ import java.util.Map;
  *         Date: 12/09/2011
  *         Time: 16:51
  */
-public class MetastoreClient {
+public class MetastoreClient implements PluginOntologyCVSearch {
 
     public static ResourceDescription resourceInformation;
     public static String queryURL;
@@ -32,7 +37,7 @@ public class MetastoreClient {
     }
 
 
-    public List<MetastoreResult> getTermsByPartialNameFromSource(String term) {
+    public Map<OntologySourceRefObject, List<OntologyTerm>> searchRepository(String term) {
 
         String query = queryURL.replace("$SEARCH_TERM", term);
 
@@ -44,11 +49,21 @@ public class MetastoreClient {
 
         try {
             List<MetastoreResult> result = xmlHandler.parseXML(DownloadUtils.DOWNLOAD_FILE_LOC + term + DownloadUtils.XML_EXT);
-            return result;
+            return Convert.convertMetastoreResult(result);
+
         } catch (FileNotFoundException e) {
+            System.out.println("No file found. Assuming connection is down...");
             e.printStackTrace();
-            return new ArrayList<MetastoreResult>();
+            return new HashMap<OntologySourceRefObject, List<OntologyTerm>>();
         }
+    }
+
+    public void registerSearch() {
+        OntologySearchPluginRegistry.registerPlugin(this);
+    }
+
+    public void deregisterSearch() {
+        OntologySearchPluginRegistry.deregisterPlugin(this);
     }
 
 }

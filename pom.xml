@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.isatools.</groupId>
+    <groupId>org.isatools</groupId>
     <artifactId>NovartisMetastore</artifactId>
     <version>0.1</version>
+    <name>Plugin to search the NovartisMetastore within ISAcreator.</name>
+    <packaging>bundle</packaging>
 
 
     <developers>
@@ -51,25 +53,28 @@
 
     <build>
         <plugins>
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.2.0</version>
+                <extensions>true</extensions>
+
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                    <executable>apt</executable>
-                    <fork>true</fork>
-                    <debug>true</debug>
-                    <compilerArguments>
-                        <s>${project.build.directory}</s>
-                    </compilerArguments>
-                    <meminitial>128m</meminitial>
-                    <maxmem>512m</maxmem>
+                    <instructions>
+                        <Import-Package>*</Import-Package>
+                        <Export-Package>org.isatools.novartismetastore
+                        </Export-Package>
+                        <Bundle-Activator>org.isatools.novartismetastore.Activator</Bundle-Activator>
+                        <Bundle-Vendor>ISAteam</Bundle-Vendor>
+                    </instructions>
                 </configuration>
+
             </plugin>
+
         </plugins>
     </build>
+
 
     <dependencies>
         <dependency>
@@ -78,7 +83,19 @@
             <version>1.2</version>
         </dependency>
 
-         <dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.isatools</groupId>
+            <artifactId>isacreator</artifactId>
+            <version>1.5.0.beta2</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.2</version>

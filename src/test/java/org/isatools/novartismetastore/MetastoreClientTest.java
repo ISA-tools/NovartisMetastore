@@ -1,9 +1,12 @@
 package org.isatools.novartismetastore;
 
+import org.isatools.isacreator.ontologymanager.OntologySourceRefObject;
+import org.isatools.isacreator.ontologymanager.common.OntologyTerm;
 import org.isatools.novartismetastore.resource.MetastoreResult;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by the ISA team
@@ -18,11 +21,15 @@ public class MetastoreClientTest {
     @Test
     public void getTermsByPartialNameFromSource() {
         MetastoreClient client = new MetastoreClient();
-        List<MetastoreResult> result = client.getTermsByPartialNameFromSource("colon");
+        Map<OntologySourceRefObject, List<OntologyTerm>> result = client.searchRepository("colon");
 
         System.out.println("There are " + result.size() + " results");
-        for (MetastoreResult term : result) {
-            System.out.println(term.getToken() + "(" + term.getId() + ")");
+        for (OntologySourceRefObject source : result.keySet()) {
+            System.out.println("For " + source.getSourceName());
+
+            for(OntologyTerm term : result.get(source)) {
+                System.out.println("\t" + term.getUniqueId());
+            }
         }
     }
 
