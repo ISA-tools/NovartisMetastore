@@ -12,11 +12,13 @@ public class MetastoreResult {
 
     private String id;
     private String token;
+    private String species;
     private ResourceDescription parentResource;
 
-    public MetastoreResult(String id, String token, ResourceDescription parentResource) {
+    public MetastoreResult(String id, String token, String species, ResourceDescription parentResource) {
         this.id = id;
         this.token = token;
+        this.species = species;
         this.parentResource = parentResource;
     }
 
@@ -34,6 +36,14 @@ public class MetastoreResult {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
     }
 
     public ResourceDescription getParentResource() {

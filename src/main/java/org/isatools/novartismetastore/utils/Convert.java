@@ -29,7 +29,9 @@ public class Convert {
         convertedResult.put(source, new ArrayList<OntologyTerm>());
 
         for(MetastoreResult result : metastoreResults) {
-            convertedResult.get(source).add(new OntologyTerm(result.getToken(), result.getId(), source));
+            OntologyTerm ontologyTerm = new OntologyTerm(result.getToken(), result.getId(), source);
+            ontologyTerm.addToComments("Species", result.getSpecies() == null ? "" : result.getSpecies());
+            convertedResult.get(source).add(ontologyTerm);
         }
 
         return convertedResult;

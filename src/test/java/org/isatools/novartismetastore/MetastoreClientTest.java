@@ -21,14 +21,14 @@ public class MetastoreClientTest {
     @Test
     public void getTermsByPartialNameFromSource() {
         MetastoreClient client = new MetastoreClient();
-        Map<OntologySourceRefObject, List<OntologyTerm>> result = client.searchRepository("colon");
+        Map<OntologySourceRefObject, List<OntologyTerm>> result = client.searchRepository("colon cancer");
 
         System.out.println("There are " + result.size() + " results");
         for (OntologySourceRefObject source : result.keySet()) {
             System.out.println("For " + source.getSourceName());
 
             for(OntologyTerm term : result.get(source)) {
-                System.out.println("\t" + term.getUniqueId());
+                System.out.println("\t" + term.getUniqueId() + " term name is: " + term.getOntologyTermName());
             }
         }
     }

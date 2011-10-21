@@ -26,15 +26,16 @@ public class MetastoreXMLHandler {
 
         List<MetastoreResult> terms = new ArrayList<MetastoreResult>();
 
-        NodeList platforms = (NodeList) reader.read("/synonyms/synonym", XPathConstants.NODESET);
+        NodeList preferredTerms = (NodeList) reader.read("/preferredTerms/preferredTerm", XPathConstants.NODESET);
 
-        if (platforms.getLength() > 0) {
+        if (preferredTerms.getLength() > 0) {
 
-            for (int sectionIndex = 0; sectionIndex <= platforms.getLength(); sectionIndex++) {
-                String id = (String) reader.read("/synonyms/synonym[" + sectionIndex + "]/@id", XPathConstants.STRING);
-                String token = (String) reader.read("/synonyms/synonym[" + sectionIndex + "]/token", XPathConstants.STRING);
+            for (int sectionIndex = 0; sectionIndex <= preferredTerms.getLength(); sectionIndex++) {
+                String id = (String) reader.read("/preferredTerms/preferredTerm[" + sectionIndex + "]/@id", XPathConstants.STRING);
+                String species = (String) reader.read("/preferredTerms/preferredTerm[" + sectionIndex + "]/species", XPathConstants.STRING);
+                String token = (String) reader.read("/preferredTerms/preferredTerm[" + sectionIndex + "]/value", XPathConstants.STRING);
                 if (!id.equalsIgnoreCase("")) {
-                    terms.add(new MetastoreResult(id, token, MetastoreClient.resourceInformation));
+                    terms.add(new MetastoreResult(id, token, species, MetastoreClient.resourceInformation));
                 }
             }
 
