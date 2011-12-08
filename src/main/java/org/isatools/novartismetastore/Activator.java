@@ -17,11 +17,8 @@ import java.util.Hashtable;
 public class Activator implements BundleActivator {
 
 
-    private BundleContext context = null;
-
 
     public void start(BundleContext context) {
-        this.context = context;
 
         Hashtable dict = new Hashtable();
         context.registerService(
