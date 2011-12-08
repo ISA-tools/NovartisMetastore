@@ -22,7 +22,7 @@ public class ResourceXMLHandler {
             return new ResourceDescription(name, abbreviation, queryURL);
 
         } catch (FileNotFoundException e) {
-            return new ResourceDescription("Repository", "REPO", "repoURL is unknow");
+            return new ResourceDescription("Repository", "REPO", "URL is unknown");
         }
     }
 
