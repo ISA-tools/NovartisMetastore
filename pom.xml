@@ -48,6 +48,11 @@
             <id>java-dev</id>
             <url>http://download.java.net/maven/2/</url>
         </repository>
+        
+          <repository>
+            <id>mvnsearch</id>
+            <url>http://www.mvnsearch.org/maven2/</url>
+        </repository>
 
     </repositories>
 
@@ -80,7 +85,7 @@
         <dependency>
             <groupId>uk.ac.ebi</groupId>
             <artifactId>jutils</artifactId>
-            <version>1.2</version>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
@@ -91,8 +96,8 @@
 
         <dependency>
             <groupId>org.isatools</groupId>
-            <artifactId>isacreator</artifactId>
-            <version>1.5.0</version>
+            <artifactId>ISAcreator</artifactId>
+            <version>1.6.0</version>
         </dependency>
 
         <dependency>
