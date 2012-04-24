@@ -48,6 +48,11 @@
             <id>java-dev</id>
             <url>http://download.java.net/maven/2/</url>
         </repository>
+        
+          <repository>
+            <id>mvnsearch</id>
+            <url>http://www.mvnsearch.org/maven2/</url>
+        </repository>
 
     </repositories>
 
