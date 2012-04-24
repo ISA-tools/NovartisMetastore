@@ -80,7 +80,7 @@
         <dependency>
             <groupId>uk.ac.ebi</groupId>
             <artifactId>jutils</artifactId>
-            <version>1.3.1</version>
+            <version>1.4</version>
         </dependency>
 
         <dependency>
@@ -92,7 +92,7 @@
         <dependency>
             <groupId>org.isatools</groupId>
             <artifactId>ISAcreator</artifactId>
-            <version>1.5.0</version>
+            <version>1.6.0</version>
         </dependency>
 
         <dependency>
