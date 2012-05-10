@@ -69,6 +69,7 @@ public class ResourceXMLHandler {
             return new ArrayList<ResourceDescription>();
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
             return new ArrayList<ResourceDescription>();
         }
     }

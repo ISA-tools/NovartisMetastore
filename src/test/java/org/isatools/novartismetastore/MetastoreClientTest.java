@@ -61,7 +61,7 @@ public class MetastoreClientTest {
     public void checkIfResourceIsAvailableForField() {
         MetastoreClient client = new MetastoreClient();
 
-        String field = "metabolite profiling using NMR spectroscopy:>Label";
+        String field = "transcription profiling using DNA microarray:>Label";
 
         for(ResourceDescription resourceDescription : MetastoreClient.resourceInformation) {
             boolean allowed = client.checkIfResourceHasField(resourceDescription, field);

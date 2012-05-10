@@ -15,9 +15,7 @@ import org.isatools.novartismetastore.xml.ResourceXMLHandler;
 import uk.ac.ebi.utils.io.DownloadUtils;
 
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by the ISA team
@@ -141,6 +139,14 @@ public class MetastoreClient implements PluginOntologyCVSearch {
             e.printStackTrace();
             return new HashMap<OntologySourceRefObject, List<OntologyTerm>>();
         }
+    }
+
+    public Set<String> getAvailableResourceAbbreviations() {
+        Set<String> resources = new HashSet<String>();
+        for(ResourceDescription resource : resourceInformation) {
+            resources.add(resource.getResourceAbbreviation());
+        }
+        return resources;
     }
 
     public void registerSearch() {
