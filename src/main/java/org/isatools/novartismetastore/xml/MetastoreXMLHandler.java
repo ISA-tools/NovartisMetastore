@@ -3,6 +3,7 @@ package org.isatools.novartismetastore.xml;
 
 import org.isatools.novartismetastore.MetastoreClient;
 import org.isatools.novartismetastore.resource.MetastoreResult;
+import org.isatools.novartismetastore.resource.ResourceDescription;
 import org.w3c.dom.NodeList;
 import uk.ac.ebi.utils.xml.XPathReader;
 
@@ -21,7 +22,7 @@ import java.util.*;
  */
 public class MetastoreXMLHandler {
 
-    public List<MetastoreResult> parseXML(String xml) throws FileNotFoundException {
+    public List<MetastoreResult> parseXML(String xml, ResourceDescription resourceDescription) throws FileNotFoundException {
         XPathReader reader = new XPathReader(new FileInputStream(xml));
 
         List<MetastoreResult> terms = new ArrayList<MetastoreResult>();
@@ -35,7 +36,7 @@ public class MetastoreXMLHandler {
                 String species = (String) reader.read("/preferredTerms/preferredTerm[" + sectionIndex + "]/species", XPathConstants.STRING);
                 String token = (String) reader.read("/preferredTerms/preferredTerm[" + sectionIndex + "]/value", XPathConstants.STRING);
                 if (!id.equalsIgnoreCase("")) {
-                    terms.add(new MetastoreResult(id, token, species, MetastoreClient.resourceInformation));
+                    terms.add(new MetastoreResult(id, token, species, resourceDescription));
                 }
             }
 

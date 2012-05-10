@@ -1,6 +1,15 @@
-<resource>
-    <name>Novartis Metastore Information System</name>
-    <abbreviation>NVMIS</abbreviation>
-    <!--Could turn this into a list of URLs for differing queries. -->
-    <queryURL></queryURL>
-</resource>
+<resources>
+    <resource name="Novartis Metastore Information System" abbreviation="NVMIS" queryURL="http://www.antarctic-design.co.uk/xml/test-xml-colon.xml" version="0.1">
+        <fields>
+            <field name="Label"/>
+        </fields>
+    </resource>
+
+    <resource name="Novartis Metastore Information System2" abbreviation="NVMIS2" queryURL="http://www.antarctic-design.co.uk/xml/test2-xml-colon.xml" version="0.2">
+        <fields>
+            <field name="Label" assay-measurement="metabolite profiling" assay-technology="NMR spectroscopy"/>
+            <field name="Characteristics[organism]"/>
+        </fields>
+    </resource>
+    <!--We can now have multiple resources-->
+</resources>
