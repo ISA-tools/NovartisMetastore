@@ -4,6 +4,7 @@ import org.isatools.isacreator.ontologymanager.OntologySourceRefObject;
 import org.isatools.isacreator.ontologymanager.common.OntologyTerm;
 import org.isatools.novartismetastore.MetastoreClient;
 import org.isatools.novartismetastore.resource.MetastoreResult;
+import org.isatools.novartismetastore.resource.ResourceDescription;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +21,11 @@ import java.util.Map;
  */
 public class Convert {
 
-    public static Map<OntologySourceRefObject, List<OntologyTerm>> convertMetastoreResult(List<MetastoreResult> metastoreResults) {
+    public static Map<OntologySourceRefObject, List<OntologyTerm>> convertMetastoreResult(List<MetastoreResult> metastoreResults, ResourceDescription resourceDescription) {
         Map<OntologySourceRefObject, List<OntologyTerm>> convertedResult = new HashMap<OntologySourceRefObject, List<OntologyTerm>>();
 
         OntologySourceRefObject source = new OntologySourceRefObject(
-                MetastoreClient.resourceInformation.getResourceAbbreviation(), "", "", MetastoreClient.resourceInformation.getResourceName());
+                resourceDescription.getResourceAbbreviation(), "", resourceDescription.getResourceVersion(), resourceDescription.getResourceName());
 
         convertedResult.put(source, new ArrayList<OntologyTerm>());
 
